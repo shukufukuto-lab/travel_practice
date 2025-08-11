@@ -396,11 +396,12 @@ export default function ChatInterface() {
 
   useEffect(() => {
     if (state.currentStep === 0 && messages.length === 1) {
+      const dateInput = renderDateInput();
       setTimeout(() => {
         setIsTyping(true);
         setTimeout(() => {
           setIsTyping(false);
-          addMessage('ai', renderDateInput());
+          addMessage('ai', dateInput);
         }, 1000);
       }, 500);
     }
