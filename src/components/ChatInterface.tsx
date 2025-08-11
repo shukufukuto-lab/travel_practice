@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import { usePlanning } from '@/context/PlanningContext';
 import MessageBubble from './MessageBubble';
 import TypingIndicator from './TypingIndicator';
@@ -361,7 +361,7 @@ export default function ChatInterface() {
     setSelectedSuggestions([]);
   };
 
-  const renderDateInput = () => (
+  const renderDateInput = useCallback(() => (
     <div>
       <p className="mb-3">旅行の日程を選択してください：</p>
       <div className="space-y-3">
@@ -392,7 +392,7 @@ export default function ChatInterface() {
         </button>
       </div>
     </div>
-  );
+  ), [handleDateSelection]);
 
   useEffect(() => {
     if (state.currentStep === 0 && messages.length === 1) {
@@ -405,7 +405,7 @@ export default function ChatInterface() {
         }, 1000);
       }, 500);
     }
-  }, [state.currentStep, messages.length, addMessage]);
+  }, [state.currentStep, messages.length, addMessage, renderDateInput]);
 
   return (
     <div className="flex flex-col h-screen bg-gray-50">
