@@ -256,7 +256,7 @@ export default function ChatInterface() {
     );
   };
 
-  const handleSuggestionSelection = async () => {
+  const handleSuggestionSelection = useCallback(async () => {
     if (selectedSuggestions.length === 0) {
       dispatch({ type: 'SET_ERROR', payload: 'アクティビティを1つ以上選択してください' });
       return;
@@ -345,7 +345,7 @@ export default function ChatInterface() {
       setIsTyping(false);
       dispatch({ type: 'SET_ERROR', payload: '最終プランの作成に失敗しました' });
     }
-  };
+  }, [selectedSuggestions, state.aiSuggestions, addMessage, state.dateSelection, state.selectedConcepts, dispatch]);
 
   const handleRestart = () => {
     dispatch({ type: 'RESET_STATE' });
