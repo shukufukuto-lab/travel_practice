@@ -91,7 +91,7 @@ export default function ChatInterface() {
     ]);
   }, []);
 
-  const addMessage = (type: 'user' | 'ai', content: string | React.ReactNode) => {
+  const addMessage = useCallback((type: 'user' | 'ai', content: string | React.ReactNode) => {
     const newMessage: Message = {
       id: Date.now().toString(),
       type,
@@ -99,9 +99,9 @@ export default function ChatInterface() {
       timestamp: new Date(),
     };
     setMessages(prev => [...prev, newMessage]);
-  };
+  }, []);
 
-  const handleDateSelection = () => {
+  const handleDateSelection = useCallback(() => {
     const startDate = (document.getElementById('startDate') as HTMLInputElement)?.value;
     const endDate = (document.getElementById('endDate') as HTMLInputElement)?.value;
 
@@ -161,7 +161,7 @@ export default function ChatInterface() {
         dispatch({ type: 'SET_STEP', payload: 1 });
       }, 1500);
     }, 500);
-  };
+  }, [addMessage, dispatch, selectedConcepts]);
 
   const toggleConcept = (conceptId: string) => {
     setSelectedConcepts(prev => 
