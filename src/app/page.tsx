@@ -1,12 +1,12 @@
 'use client';
 
 import { PlanningProvider } from '@/context/PlanningContext';
-import PlanningFlow from '@/components/PlanningFlow';
+import ChatInterface from '@/components/ChatInterface';
 
 export default function Home() {
   return (
     <PlanningProvider>
-      <PlanningFlow />
+      <ChatInterface />
     </PlanningProvider>
   );
 }
