@@ -171,7 +171,7 @@ export default function ChatInterface() {
     );
   };
 
-  const handleConceptSelection = async () => {
+  const handleConceptSelection = useCallback(async () => {
     if (selectedConcepts.length === 0) {
       dispatch({ type: 'SET_ERROR', payload: 'コンセプトを1つ以上選択してください' });
       return;
@@ -246,7 +246,7 @@ export default function ChatInterface() {
       setIsTyping(false);
       dispatch({ type: 'SET_ERROR', payload: 'AIからの提案取得に失敗しました' });
     }
-  };
+  }, [selectedConcepts, addMessage, dispatch, state.dateSelection, selectedSuggestions]);
 
   const toggleSuggestion = (suggestionId: string) => {
     setSelectedSuggestions(prev => 
