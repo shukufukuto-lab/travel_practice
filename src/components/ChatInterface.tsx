@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 import { usePlanning } from '@/context/PlanningContext';
 import MessageBubble from './MessageBubble';
 import TypingIndicator from './TypingIndicator';
-import ChatInput from './ChatInput';
 import { ActivityConcept, AISuggestion } from '@/types';
 
 interface Message {
@@ -405,7 +404,7 @@ export default function ChatInterface() {
         }, 1000);
       }, 500);
     }
-  }, [state.currentStep, messages.length]);
+  }, [state.currentStep, messages.length, addMessage]);
 
   return (
     <div className="flex flex-col h-screen bg-gray-50">
